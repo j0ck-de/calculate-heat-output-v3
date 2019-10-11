@@ -5,16 +5,98 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Calculate Heat Value</title>
+    <link href="https://fonts.googleapis.com/css?family=Oswald:400,500,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="app">
+        <form class="app__form">
+            <fieldset class="app__fieldset">
+                <legend class="app__legend">
+                    <h1 class="app__heading">Heizkörperleistung Umrechner</h1>
+                </legend>
+
+                <!-- DESCRIPTION -->
+                <div class="app__description description">
+                    <p class="description__text">
+                        Will man für eine gegebene Raum-Heizlast einen Heizkörper auswählen, so bemüht man die Wärmeleistungs-Tabellen der Heizkörper-Hersteller.
+                        Diese enthalten die Norm-Wärmeleistung der Heizkörper nach DIN EN 442, auf Grundlage der Systemtemperaturen von:
+                    </p>
+
+                    <table class="description__box">
+                        <tr>
+                            <td>Vorlauftemperatur:</td>
+                            <td>75°C</td>
+                        </tr>
+                        <tr>
+                            <td>Rücklauftemperatur:</td>
+                            <td>65°C</td>
+                        </tr>
+                        <tr>
+                            <td>Raumlufttemperatur:</td>
+                            <td>20°C</td>
+                        </tr>
+                    </table>
+
+                    <p class="description__text">
+                        Vorteilhafterweise haben die meisten Hersteller ihre Leistungstabellen auf die gebräuchlichsten Systemtemperaturen, wie z.B. 70/55 °C bzw. 55/45 °C, bei verschiedenen Raumlufttemperaturen umgerechnet. Sind aber für die geplante Heizungsanlage andere Systemtemperaturen vorgesehen, müssen diese erst umgerechnet werden.
+                    </p>
+                </div>
+
+                <!-- INPUT FIELDS -->
+                <div class="app__inputs inputs">
+                    <div class="inputs__container inputs__container--top">
+                        <input type="number" class="inputs__input" placeholder="Feed" name="heatFeed">
+                        <input type="number" class="inputs__input" placeholder="Return" name="heatReturn">
+                        <input type="number" class="inputs__input" placeholder="Temperature" name="heatTemperature">
+                    </div>
+
+                    <div class="inputs__container inputs__container--bottom">
+                        <input type="number" class="inputs__input" placeholder="Value" name="value">
+                        <input type="number" class="inputs__input" placeholder="Exponent" name="exponent">
+                    </div>
+                </div>
+
+                <!-- RESULT CONTAINER -->
+                <div class="app__results results">
+                    <div class="results__result">Result</div>
+                </div>
+
+
+            </fieldset>
+        </form>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+
+</html>
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Wärmeleistungsrechner</title>
 </head>
 
 <body>
 
-    <input type="number" class="inputs__input" placeholder="Feed" name="heatFeed">
-    <input type="number" class="inputs__input" placeholder="Return" name="heatReturn">
-    <input type="number" class="inputs__input" placeholder="Temperature" name="heatTemperature">
-    <input type="number" class="inputs__input" placeholder="Value" name="value">
-    <input type="number" class="inputs__input" placeholder="Exponent" name="exponent">
+    Feed<input type="number" class="inputs__input" placeholder="Feed" name="heatFeed">
+    Return<input type="number" class="inputs__input" placeholder="Return" name="heatReturn">
+    Temperature<input type="number" class="inputs__input" placeholder="Temperature" name="heatTemperature">
+    Value<input type="number" class="inputs__input" placeholder="Value" name="value">
+    Exponent<input type="number" class="inputs__input" placeholder="Exponent" name="exponent">
     <button class="button__calculate">Calculate</button>
 
     <div class="results__result">Result</div>
@@ -22,4 +104,4 @@
     <script src="index.js"></script>
 </body>
 
-</html>
+</html> -->
