@@ -200,18 +200,18 @@ const appController = ((dataCtrl, viewCtrl) => {
   })();
 
   // BUTTON EVENTS
-  const buttonElements = (() => {
+  // const buttonElements = (() => {
 
-    const buttonResultHandler = () => {
-      dataCtrl.calculate();
-      viewCtrl.displayResult(dataCtrl.data.user.result);
-    };
+  //   const buttonResultHandler = () => {
+  //     dataCtrl.calculate();
+  //     viewCtrl.displayResult(dataCtrl.data.user.result);
+  //   };
 
-    // add an eventListener to the calculate button
-    document.querySelector(DOM.buttonCalculate)
-      .addEventListener('click', buttonResultHandler);
+  //   // add an eventListener to the calculate button
+  //   document.querySelector(DOM.buttonCalculate)
+  //     .addEventListener('click', buttonResultHandler);
 
-  })();
+  // })();
 
   return {
     init() {
