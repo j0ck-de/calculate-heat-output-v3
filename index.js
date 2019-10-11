@@ -36,6 +36,7 @@ const dataController = (() => {
     // Initialize the data object.
     init() {
       this._setUserData();
+      // this.updateUserResult();
     },
 
     /**
@@ -45,6 +46,16 @@ const dataController = (() => {
        */
     _setUserData() {
       return this.user = Object.assign({ result: undefined }, this.DEFAULT_VALUES);
+    },
+
+    // When the user changes the input field the user data gets updated.
+    updateUserData() {
+      return this.user[event.target.name] = +event.target.value;
+    },
+
+    // When this method gets fired, the calculation process gets started and the final result gets stored in data.user.result.
+    updateUserResult() {
+      return this.user.result = _calculate.getResult();
     }
   };
 
@@ -79,12 +90,21 @@ const dataController = (() => {
 
     data, // TODO: DELETE LATER
 
+    // Initialize the DataController
     init() {
+
+      // Initialize the data object.
       data.init();
     },
 
+    // Public method for the calculation process
     calculate() {
-      return data.user.result = _calculate.getResult();
+
+      // Update the user data by getting the input value
+      data.updateUserData();
+
+      // Update the user result with the calculated value
+      data.updateUserResult();
     }
   };
 })();
@@ -92,19 +112,68 @@ const dataController = (() => {
 // View Controller
 const viewController = (() => {
 
+  // Collect the DOM strings for easier access.
   const DOMStrings = {
     inputElements: '.inputs__input',
-    buttonCalculate: '.button__calculate'
+    buttonCalculate: '.button__calculate',
+    resultDIV: '.results__result'
+  };
+
+  // Create an inputElements object to manage input element related stuff.
+  const inputElements = {
+
+    // Initialize the inputElements object.
+    init(obj) {
+
+      // Get the data.DEFAULT_VALUES object and set the input element values
+      this._setDefaultValues(obj);
+    },
+
+    // Methods to fill the input elements with the data.DEFAULT_VALUES data.
+    _setDefaultValues(obj) {
+
+      // Get all input nodes as a nodeList
+      const inputsNodeList = document.querySelectorAll(DOMStrings.inputElements);
+
+      // Loop through the nodeList
+      inputsNodeList.forEach(input => {
+
+        // For each nodeList iteratation loop thourgh the object and look for the matching inputs
+        for (const key in obj) {
+          if (obj.hasOwnProperty(key)) {
+            const element = obj[key];
+            // If the object property machtes the input name, set the value attribute.
+            if (key === input.name) input.setAttribute('value', element);
+          }
+        }
+      });
+    }
   };
 
   return {
 
+    inputElements, // TODO: DELETE LATER
+
+    // Initialize the ViewController.
+    init(obj) {
+
+      // Initialize the inputElements object.
+      inputElements.init(obj);
+    },
+
+    // Make the DOMStrings public.
     getDOMStrings() {
       return DOMStrings;
     },
 
+    // Display the result in the DOM
     displayResult(objResult) {
-      console.log(objResult)
+
+      // Get the result div
+      const resultDIV = document.querySelector(DOMStrings.resultDIV);
+
+      // Fill the result div with data.user.result
+      resultDIV.innerHTML = `Result: ${objResult}`;
     }
   }
 
@@ -147,6 +216,7 @@ const appController = ((dataCtrl, viewCtrl) => {
   return {
     init() {
       dataCtrl.init();
+      viewCtrl.init(dataCtrl.data.DEFAULT_VALUES);
     }
   };
 })(dataController, viewController);
